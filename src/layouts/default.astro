@@ -1,17 +1,9 @@
 ---
 const navItems = [
-	{
-		path: '/shop',
-		label: 'Shop',
-	},
-	{
-		path: '/blog',
-		label: 'Blog',
-	},
-	{
-		path: '/about',
-		label: 'About',
-	},
+	{ path: '/shop', label: 'Shop' },
+	{ path: '/blog', label: 'Blog' },
+	{ path: '/about', label: 'About' },
+	{ path: '/newsletter', label: 'Newsletter' },
 ];
 ---
 
@@ -25,10 +17,15 @@ const navItems = [
 			href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@700&display=swap"
 			rel="stylesheet"
 		/>
-
+		<link
+			rel="alternate"
+			type="application/tss+xml"
+			title="My blog"
+			href="/rss.xml"
+		/>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Make great sandwiches at home with sndwch</title>
 	</head>
 	<body>
 		<header>
@@ -37,13 +34,7 @@ const navItems = [
 				sndwch
 			</a>
 
-			<nav>
-				{
-					navItems.map((item) => {
-						return <a href={item.path}>{item.label}</a>;
-					})
-				}
-			</nav>
+			<nav>{navItems.map((item) => <a href={item.path}>{item.label}</a>)}</nav>
 		</header>
 
 		<slot />

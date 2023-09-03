@@ -1,4 +1,5 @@
 import { computed, map } from 'nanostores';
+import type { ShopItem, CartStore } from '../types';
 
 export const cart = map<Record<number, CartStore | undefined>>({});
 

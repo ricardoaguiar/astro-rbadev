@@ -1,10 +1,8 @@
 ---
 import Layout from '../layouts/default.astro';
+import heroImg from '../assets/sandwich-hero.jpg';
 import ShopItems from '../components/shop-items.astro';
-import heroImage from '../assets/sandwich-hero.jpg';
 import newsletterImage from '../assets/newsletter.jpg';
-
-export const prerender = true;
 ---
 
 <Layout>
@@ -12,25 +10,28 @@ export const prerender = true;
 		<div class="cta">
 			<h1>All Sandwiches. All the time.</h1>
 			<p class="lede">
-				The world’s leading sandwich connoisseurs trust sndwch.
+				The world's leading sandwich connoisseurs trust sndwch.
 			</p>
-			<a href="/shop" class="big-link"> Shop Sandwich Kits</a>
+			<a href="/shop" class="big-link">Shop Sandwich Kits</a>
 		</div>
 		<img
-			src={heroImage.src}
-			alt="A sandwich on a plate. This sandwich is a taco."
+			src={heroImg}
+			alt="A sandwchid on a plate."
 			class="hero-image"
+			loading="eager"
+			decoding="async"
 		/>
 	</section>
-
 	<section class="block products">
 		<ShopItems count={3} addToCart={false} />
-		<p class="shop-link"><a href="/shop">Shop All Sandwich Kits &rarr;</a></p>
+		<p class="shop-link">
+			<a href="/shop" class="big-link">Shop All Sandwich Kits &rarr;</a>
+		</p>
 	</section>
 
 	<section class="block newsletter">
 		<img
-			src={newsletterImage.src}
+			src={newsletterImage}
 			alt="a bag with the word “sndwch” superimposed on it"
 		/>
 		<div class="copy">
@@ -39,7 +40,15 @@ export const prerender = true;
 				Get the sndwch newsletter to hear what else qualifies as a sandwich
 				first!
 			</p>
-			<a href="/newsletter" class="big-link">Subscribe</a>
+			<form method="post" class="newsletter-form" action="/newsletter">
+				<label for="name">Name</label>
+				<input type="text" id="name" name="name" required />
+
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" required />
+
+				<button type="submit" class="big-link">Subscribe</button>
+			</form>
 		</div>
 	</section>
 
@@ -100,7 +109,28 @@ export const prerender = true;
 
 		.newsletter img {
 			aspect-ratio: 1;
+			display: none;
 			width: min(30%, 250px);
+		}
+
+		.newsletter-form {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.newsletter-form label {
+			display: block;
+			font-size: 0.75rem;
+		}
+
+		.newsletter-form input {
+			display: block;
+			font-size: 1rem;
+			height: 2.125rem;
+			padding: 0.25rem 0.5rem;
+			width: 100%;
 		}
 
 		@media (min-width: 450px) {
@@ -112,6 +142,10 @@ export const prerender = true;
 				height: 120%;
 				object-position: 35% 50%;
 				width: 120%;
+			}
+
+			.newsletter img {
+				display: block;
 			}
 		}
 
@@ -139,6 +173,15 @@ export const prerender = true;
 			.hero-image {
 				height: 100%;
 				object-position: 50% 50%;
+			}
+
+			.newsletter-form {
+				align-items: flex-end;
+				flex-direction: row;
+			}
+
+			.newsletter-form label {
+				width: 30%;
 			}
 		}
 
