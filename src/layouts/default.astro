@@ -28,7 +28,7 @@ const navItems = [
 		<title>Make great sandwiches at home with sndwch</title>
 	</head>
 	<body>
-		<header>
+		<header class="header">
 			<a href="/" rel="home">
 				<span role="img" aria-label="hotdog">🌭</span>
 				sndwch
@@ -39,12 +39,14 @@ const navItems = [
 
 		<slot />
 
-		<footer>
+		<footer class="footer">
 			<p>
-				<a href="https://frontendmasters.com/courses/astro/"
+				<a href="https://frontendmasters.com/courses/astro/" target="_blank"
 					>learn to build this on Frontend Masters</a
 				>
-				<a href="https://github.com/ricardoaguiar/astro-rbadev">source code</a>
+				<a href="https://github.com/ricardoaguiar/astro-rbadev" target="_blank"
+					>source code</a
+				>
 			</p>
 		</footer>
 	</body>
@@ -81,6 +83,19 @@ const navItems = [
 		font-weight: 700;
 		line-height: 1.1;
 		margin: 1.5rem 0 0;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
+	.footer {
+		background-color: var(--color-gray-100);
+		bottom: 0;
+		position: fixed;
+		text-align: center;
+		width: 100%;
 	}
 
 	.block {
